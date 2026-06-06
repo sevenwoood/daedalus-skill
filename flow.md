@@ -13,25 +13,25 @@ graph TD
     Check -->|模糊| Clarify[追加聚焦提问]
     Clarify --> Round4[第4轮...]
     Check -->|清晰| Decision{用户选择路径}
-    Decision -->|轻量/中等/完整| Continue[继续对话或结束]
+    Decision -->|轻量/中等/完整| ContinueChat[继续对话或结束]
     
-    Continue --> RiskCheck{每5轮且新风险?}
+    ContinueChat --> RiskCheck{每5轮且新风险?}
     RiskCheck -->|是| RiskOutput[输出合规+安全风险提示]
     RiskCheck -->|否| Skip[跳过]
     
-    Continue --> ActionCheck{第8轮及之后每5轮}
+    ContinueChat --> ActionCheck{第8轮及之后每5轮}
     ActionCheck -->|触发| ActionRemind[行动提醒: 开始做/继续聊/保存退出]
     
     ActionRemind --> UserChoice{用户选择}
     UserChoice -->|开始做| PRD[输出完整PRD + 工具链 + 结束语]
-    UserChoice -->|继续聊| Continue
+    UserChoice -->|继续聊| ContinueChat
     UserChoice -->|保存退出| Save[输出当前记录, 可恢复]
     
     PRD --> End([结束])
     Save --> End
     
     subgraph 特殊触发
-        UserAsk[用户主动要求"分析风险"] --> RiskOutput
+        UserAsk[用户主动要求&quot;分析风险&quot;] --> RiskOutput
         MaxRound[达到12轮未结束] --> PRD
     end
 ```
