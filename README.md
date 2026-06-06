@@ -10,7 +10,7 @@
 
 ## 📖 简介
 
-代达罗斯（Daedalus）是一个遵循 Agent Skills 协议的对话式产品孵化技能。它能够：
+代达罗斯（Daedalus）是一个遵循 [Agent Skills 协议](https://skills.sh) 的对话式产品孵化技能。它能够：
 
 - 从**零基础用户的模糊想法**出发，通过结构化提问逐轮具象化产品概念；
 - **每轮提供反馈**（亮点 + 留意点），建立信任的同时引导用户自我修正；
@@ -21,32 +21,38 @@
 
 ## ✨ 主要特性
 
-| 特性 | 说明 |
-|---|---|
-| 🗣️ 承接模糊想法 | 不评判、不否定，用感性开放的问题引导用户具象化 |
-| 🔄 结构化轮次对话 | 12 轮对话流程，每轮不超过 3 个问题，逐步深入 |
-| 💰 项目门槛评估 | 第 3 轮自动评估技术/资金/时间成本，提供轻量/中等/完整三条路径 |
-| 📚 竞品参考推荐 | 基于关键词匹配内置竞品库，提供差异化分析 |
-| ⚖️ 合规 + 安全风险提示 | 从法律/伦理和技术/产品设计两个维度主动提醒风险 |
-| 📋 边界定义 | 明确 V1 必须功能（≤ 3 个）、延后功能、不做范围 |
-| 📄 结构化 PRD 输出 | 9 个核心章节的 Markdown 文档，可直接交给 AI 编程工具 |
-| 🛠️ 工具链推荐 | 分专业工具和零代码工具两张表，适配不同技术背景 |
-| 💾 进度保存与恢复 | 支持"保存退出"并后续继续，最大 12 轮自动结束 |
-| 🧩 降级策略 | 用户回复过短时自动切换为二选一菜单模式 |
+| 特性                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| 🗣️ 承接模糊想法        | 不评判、不否定，用感性开放的问题引导用户具象化               |
+| 🔄 结构化轮次对话      | 12 轮对话流程，每轮不超过 3 个问题，逐步深入                 |
+| 💰 项目门槛评估        | 第 3 轮自动评估技术/资金/时间成本，提供轻量/中等/完整三条路径 |
+| 📚 竞品参考推荐        | 基于关键词匹配内置竞品库，提供差异化分析                     |
+| ⚖️ 合规 + 安全风险提示 | 从法律/伦理和技术/产品设计两个维度主动提醒风险               |
+| 📋 边界定义            | 明确 V1 必须功能（≤ 3 个）、延后功能、不做范围               |
+| 📄 结构化 PRD 输出     | 9 个核心章节的 Markdown 文档，可直接交给 AI 编程工具         |
+| 🛠️ 工具链推荐          | 分专业工具和零代码工具两张表，适配不同技术背景               |
+| 💾 进度保存与恢复      | 支持"保存退出"并后续继续，最大 12 轮自动结束                 |
+| 🧩 降级策略            | 用户回复过短时自动切换为二选一菜单模式                       |
 
 ## 📦 安装
 
-### 方式一：GitHub CLI（推荐）
+本技能符合 **Skills CLI** 规范，可通过以下任意方式安装：
+
+### 方式一：通用 Skills CLI（推荐）
+
+```bash
+npx skills add sevenwoood/daedalus-skill --skill daedalus-skill
+```
+
+
+
+### 方式二：GitHub Skills CLI
 
 ```bash
 gh skill install sevenwoood/daedalus-skill daedalus-skill
 ```
 
-### 方式二：通用 Skills CLI
 
-```bash
-npx skills add sevenwoood/daedalus-skill --skill daedalus-skill
-```
 
 ### 方式三：手动安装
 
@@ -56,9 +62,12 @@ git clone https://github.com/sevenwoood/daedalus-skill.git
 # - ~/.cursor/skills/
 # - ~/.claude/skills/
 # - ~/.codex/skills/
+# 或者直接作为独立项目使用
 ```
 
-> 若平台不支持完整文件结构，至少需将 `instructions.md` 作为 System Prompt 植入，并手动参考其他规则文件。
+
+
+> 若平台不支持完整文件结构，可将 `instructions.md` 作为 System Prompt 植入，其余文件作为参考。
 
 ## 🚀 快速开始
 
@@ -68,7 +77,7 @@ git clone https://github.com/sevenwoood/daedalus-skill.git
 
 **技能输出示例**（第 3 轮门槛评估）：
 
-```
+```text
 💰 项目门槛评估
 根据你的描述，这个产品可能涉及：
 - 后端服务器/数据库（如需要用户账号、存储轨迹）
@@ -80,6 +89,8 @@ git clone https://github.com/sevenwoood/daedalus-skill.git
 2. 中等完整度：成本几千元，几周时间，简单后端（如 Supabase、LeanCloud）
 3. 全功能产品：成本万元以上，月固定费用，需开发团队
 ```
+
+
 
 **最终 PRD 输出**：当用户选择"开始做"或对话结束时，代达罗斯会生成包含以下 9 个章节的完整产品需求文档：
 
@@ -95,38 +106,41 @@ git clone https://github.com/sevenwoood/daedalus-skill.git
 
 ## 📁 文件结构
 
-```
+```text
 daedalus-skill/
-├── instructions.md                      # 核心技能定义（系统指令）
-├── README.md                            # 本文件
-├── capabilities.md                      # 能力清单（14 项能力详细说明）
-├── flow.md                              # 对话流程总览（含 Mermaid 流程图）
-├── rules.md                             # 判断规则（立项/风险/边界/降级）
-├── changelog.md                         # 版本变更记录
-├── templates/                           # 模板文件
-│   ├── boundary_template.md             # 边界定义模板
-│   ├── final_prd_template.md            # 最终 PRD 输出模板
-│   ├── risk_checklist.md                # 风险检查清单
-│   ├── round1_question.md               # 第 1 轮提问模板
-│   ├── round2_question.md               # 第 2 轮提问模板
-│   ├── round3_triggers.md               # 第 3 轮触发条件
-│   └── toolchain_recommend.md           # 工具链推荐模板
-├── examples/                            # 示例
-│   └── sample_conversation.md           # 完整对话示例
-└── assets/                              # 静态资源
-    ├── daedalus-skill_banner.svg        # Banner 图片
-    └── daedalus_skill_logo.png          # Logo 图标
+├── SKILL.md                            # 技能元信息文件（skills CLI 入口）
+├── instructions.md                     # 核心技能定义（系统指令）
+├── README.md                           # 本文件
+├── capabilities.md                     # 能力清单（14 项能力详细说明）
+├── flow.md                             # 对话流程总览（含 Mermaid 流程图）
+├── rules.md                            # 判断规则（立项/风险/边界/降级）
+├── changelog.md                        # 版本变更记录
+├── templates/                          # 模板文件
+│   ├── boundary_template.md            # 边界定义模板
+│   ├── final_prd_template.md           # 最终 PRD 输出模板
+│   ├── risk_checklist.md               # 风险检查清单
+│   ├── round1_question.md              # 第 1 轮提问模板
+│   ├── round2_question.md              # 第 2 轮提问模板
+│   ├── round3_triggers.md              # 第 3 轮触发条件
+│   └── toolchain_recommend.md          # 工具链推荐模板
+├── examples/                           # 示例
+│   └── sample_conversation.md          # 完整对话示例
+└── assets/                             # 静态资源
+    ├── daedalus-skill_banner.svg       # Banner 图片
+    └── daedalus_skill_logo.png         # Logo 图标
 ```
+
+
 
 ## 📜 版本记录
 
-| 版本 | 日期 | 主要变更 |
-|---|---|---|
-| v1.0.5 | 2026-06-06 | 正式命名"代达罗斯"；增加安全风险提示模块；工具链分拆展示；进度保存与恢复；最大 12 轮自动结束 |
-| v1.0.4 | 2026-06-05 | 建立对话流程控制；项目门槛评估；竞品参考推荐；合规风险提示 |
-| v1.0.3 | 2026-06-04 | 基础对话框架；最终 PRD 输出模板雏形 |
+| 版本   | 日期       | 主要变更                                                     |
+| :----- | :--------- | :----------------------------------------------------------- |
+| v1.0.5 | 2026-06-06 | 正式命名"代达罗斯"；增加安全风险提示模块；工具链分拆展示；进度保存与恢复；最大 12 轮自动结束；增加符合 skills CLI 规范的 SKILL.md |
+| v1.0.4 | 2026-06-05 | 建立对话流程控制；项目门槛评估；竞品参考推荐；合规风险提示   |
+| v1.0.3 | 2026-06-04 | 基础对话框架；最终 PRD 输出模板雏形                          |
 
-> 完整变更记录请查看 [changelog.md](changelog.md)。
+> 完整变更记录请查看 [changelog.md](https://changelog.md/)。
 
 ## 📄 许可证
 
